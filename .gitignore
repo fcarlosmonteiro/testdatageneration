@@ -5,3 +5,6 @@ build
 dist
 /covgen.egg-info
 covgen/test
+
+venv
+.idea

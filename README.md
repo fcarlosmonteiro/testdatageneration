@@ -69,7 +69,7 @@ python -m covgen <target file location>
 Or, you can build your own program using generated inputs.
 
 ```python
-from covgen.run.inputgenerator import InputGenerator
+from covgen.run.inputgenerator.input_generator import InputGenerator
 
 generator = InputGenerator('target/triangle.py', function_name='triangle')
 

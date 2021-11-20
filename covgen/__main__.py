@@ -1,3 +1,3 @@
-from covgen.run.inputgenerator import execute
+from covgen.run.start import execute
 
 execute()
