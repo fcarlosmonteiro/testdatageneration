@@ -1,6 +1,7 @@
 import copy
 
 import covgen.types.branchutil as branchutil
+import covgen.mutations.generation as generation_mutations
 
 from covgen.exceptions.no_target_function_exception import NoTargetFunctionException
 
@@ -9,22 +10,28 @@ from covgen.parser.ast_parser import ASTParser
 from covgen.localsearch.fitnesscalc import FitnessCalculator
 from covgen.localsearch.hillclimbing import HillClimbing
 from covgen.localsearch.avm import AVM
-from covgen.mutations.generation import Mutation
 
 
 class InputGenerator():
-    def __init__(self, file, function_name=None, method=None, retry=100, int_min=0, int_max=3000):
+    def __init__(self, file, function_name=None, method=None, retry=100, generate_mutants=False, int_min=0,
+                 int_max=3000):
         parser = ASTParser(file)
-
-        Mutation(file)
-        exit() # For test
-
 
         self.method = method
         self.retry_count = retry
         self.function_defs = parser.function_defs
         self.AST = parser.AST
         self.target_function = None
+
+        if generate_mutants:
+            amount_of_mutants = generation_mutations.generate(file)
+
+            self.mutants = []
+
+            for mut in range(amount_of_mutants):
+                filename = '.tmp/mutant{}.py'.format(str(mut + 1))
+                mutant = InputGenerator(filename, function_name, method, retry)
+                self.mutants.append(mutant)
 
         if function_name is not None:
             try:
@@ -84,6 +91,7 @@ class InputGenerator():
         else:
             return None
 
+    # Todo: modify here to deal with mutants
     def generate_all_inputs(self):
         next_target_functions = []
         all_inputs = {}
