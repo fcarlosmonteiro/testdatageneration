@@ -9,11 +9,16 @@ from covgen.parser.ast_parser import ASTParser
 from covgen.localsearch.fitnesscalc import FitnessCalculator
 from covgen.localsearch.hillclimbing import HillClimbing
 from covgen.localsearch.avm import AVM
+from covgen.mutations.generation import Mutation
 
 
 class InputGenerator():
     def __init__(self, file, function_name=None, method=None, retry=100, int_min=0, int_max=3000):
         parser = ASTParser(file)
+
+        Mutation(file)
+        exit() # For test
+
 
         self.method = method
         self.retry_count = retry
@@ -36,7 +41,6 @@ class InputGenerator():
 
                 target_function.insert_hooks_on_predicates()
                 self.target_function = target_function
-                # self.target_function.branch_tree.print()
                 return
 
         raise NoTargetFunctionException(
@@ -131,7 +135,6 @@ class InputGenerator():
                 print('no branch detected')
 
             for branch_id, args in sorted(inputs.items(), key=branchutil.compare_branch_id):
-                # print(args)
                 line = '{}: Inputs->'.format(branch_id)
                 if args is None:
                     line += ' -'

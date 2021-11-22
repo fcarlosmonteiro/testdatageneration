@@ -21,16 +21,16 @@ class HillClimbing():
         for i in range(count):
             integer = random.randint(self.int_min, self.int_max)
             args.append(integer)
-        
+
         return args
 
     def _generate_random_decimals(self, count):
         args = []
         for i in range(count):
             decimal = random.uniform(self.int_min, self.int_max)
-            decimal = round(decimal,2)
+            decimal = round(decimal, 2)
             args.append(decimal)
-        
+
         return args
 
     def _generate_random_strings(self, count):
@@ -38,9 +38,8 @@ class HillClimbing():
         for i in range(count):
             letters = string.ascii_lowercase
             args.append(random.choice(letters))
-            print (args)
+            print(args)
         return args
-
 
     def _find_neighbors(self, args):
         neighbors = []
@@ -78,7 +77,7 @@ class HillClimbing():
 
                 args = new_args[0][0]
                 fitness = new_args[0][1]
-                
+
                 logging.debug((args, fitness))
 
     def minimise(self):
