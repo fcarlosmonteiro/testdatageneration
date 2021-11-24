@@ -1,4 +1,4 @@
-import copy
+import copy, os, shutil
 
 import covgen.types.branchutil as branchutil
 import covgen.mutations.generation as generation_mutations
@@ -18,6 +18,7 @@ class InputGenerator():
         parser = ASTParser(file)
 
         self.method = method
+        self.filename = file
         self.retry_count = retry
         self.function_defs = parser.function_defs
         self.AST = parser.AST
@@ -27,6 +28,7 @@ class InputGenerator():
             amount_of_mutants = generation_mutations.generate(file)
 
             self.mutants = []
+            self.dead_mutants = []
 
             for mut in range(amount_of_mutants):
                 filename = '.tmp/mutant{}.py'.format(str(mut + 1))
@@ -89,6 +91,17 @@ class InputGenerator():
                 searcher = HillClimbing(fitness_calculator, self.retry_count)
 
         minimised_args, fitness_value = searcher.minimise()
+
+        branch_type = branchutil.parse_branch_type(target_branch_id)
+        cwd = os.getcwd()
+        for mutant in self.mutants:
+            mutant_fitness_calculator = FitnessCalculator(
+                mutant.target_function, target_branch_id, mutant.AST)
+            result_for_the_branch = mutant_fitness_calculator.calculate_mutante(minimised_args)
+            if branch_type != result_for_the_branch:
+                self.dead_mutants.append(mutant)
+                self.mutants.remove(mutant)
+                shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
 
         if fitness_value == 0:
             return minimised_args

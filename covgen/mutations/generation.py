@@ -25,6 +25,7 @@ def _mutants_generator(target, unit_test):
         pass
 
     os.mkdir(path)
+    os.mkdir('{}/dead_mutants'.format(path))
 
     for m in op_mut:
         m = m.split('\n')

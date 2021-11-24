@@ -31,7 +31,7 @@ class FitnessCalculator():
         executed_branches = trace.get_executed_branches()
 
         for num, result, distance in executed_branches:
-            
+
             if (num, result) == self.target_branch:
                 return 0
 
@@ -39,12 +39,21 @@ class FitnessCalculator():
         for branch_num, branch_type in self.nodes_on_path:
             for num, result, distance_to_alternative in executed_branches:
                 if branch_num == num and branch_type != result:
-                    
                     logging.debug((branch_num, result, distance_to_alternative))
-                    #print(normalize(distance_to_alternative) + approach_level)
+                    # print(normalize(distance_to_alternative) + approach_level)
                     return normalize(distance_to_alternative) + approach_level
 
             approach_level += 1
-        
+
         # no executed branch on target branch path
         return 10000
+
+    def calculate_mutante(self, args):
+        trace = Trace()
+
+        exec(self.source, locals())
+
+        eval(self.target_function.call(args))
+
+        executed_branches = trace.get_executed_branches()
+        return executed_branches[0][1]
