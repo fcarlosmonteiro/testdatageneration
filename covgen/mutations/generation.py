@@ -3,7 +3,7 @@ import shutil
 
 
 def _mutants_generator(target, unit_test):
-    stream = os.popen('mut.py --target {} --unit-test {} -m'.format(target, unit_test))
+    stream = os.popen('mut.py --target {} --unit-test {} -o ROR COI COD -m'.format(target, unit_test))
     output = stream.read()
     mutants_op = output.split('--------------------------------------------------------------------------------')
 
@@ -29,17 +29,20 @@ def _mutants_generator(target, unit_test):
     for m in op_mut:
         m = m.split('\n')
         count = 0
+        line_number = 1
         for x in m:
             if x[:1] == '-':
                 path_mutant = '{}/.tmp/mutant{}.py'.format(cwd, str(num))
                 file_mutant = open(path_mutant, 'w')
                 prog_original = open('{}/{}'.format(cwd, target))
                 for line in prog_original:
-                    if line.replace('\n', '') == x[6:]:
+                    if x[:6] == '- {}: '.format(line_number) or x[:6] == '-  {}: '.format(line_number):
                         file_mutant.write(m[count + 1][6:] + ' #PM\n')
                         num += 1
+                        line_number += 1
                         continue
                     file_mutant.write(line)
+                    line_number += 1
                 file_mutant.close()
                 prog_original.close()
             count += 1

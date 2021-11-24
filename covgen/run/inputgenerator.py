@@ -65,12 +65,17 @@ class InputGenerator():
         fitness_calculator = FitnessCalculator(
             self.target_function, target_branch_id, self.AST)
 
+        mutants_fitness_calculator = []
+        for mutant in self.mutants:
+            mutants_fitness_calculator.append(FitnessCalculator(
+                mutant.target_function, target_branch_id, mutant.AST))
+
         searcher = None
         if self.method == 'avm':
             searcher = AVM(fitness_calculator, self.retry_count)
 
         elif self.method == 'hillclimbing':
-            searcher = HillClimbing(fitness_calculator, self.retry_count)
+            searcher = HillClimbing(fitness_calculator, mutants_fitness_calculator, self.retry_count)
 
         else:
             # mix possible methods
@@ -94,13 +99,27 @@ class InputGenerator():
     # Todo: modify here to deal with mutants
     def generate_all_inputs(self):
         next_target_functions = []
+        mutant_next_target_functions = []
         all_inputs = {}
+
+        for mutant in self.mutants:
+            if mutant.target_function is None:
+                for f in mutant.function_defs:
+                    mutant_next_target_functions.append(f.name)
+
+                mutant._set_target_function(mutant_next_target_functions.pop())
 
         if self.target_function is None:
             for f in self.function_defs:
                 next_target_functions.append(f.name)
 
             self._set_target_function(next_target_functions.pop())
+
+        mutant_branches = []
+
+        for mutant in self.mutants:
+            mutant_branch_tree = mutant.target_function.branch_tree
+            mutant_branches.append(mutant_branch_tree.get_all_branches())
 
         while True:
             branch_tree = self.target_function.branch_tree

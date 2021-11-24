@@ -1,11 +1,3 @@
-'''
-년, 월, 일을 입력받으면 요일을 출력해주는 프로그램
-'''
-
-import sys
-import pytest
-
-
 def is_leap_year(year):
     if year % 4 == 0:
         if year % 100 != 0:
@@ -23,8 +15,6 @@ def test_find_day_string():
 
 
 def find_day_string(year, month, date):
-
-  # 2019/1/1: Tuesday
     day_string = [
         'Tuesday',
         'Wednesday',
@@ -89,13 +79,3 @@ def find_day_string(year, month, date):
     days += date - 1
 
     return day_string[days % 7]
-
-
-if __name__ == "__main__":
-    if len(sys.argv) - 1 != 3:
-        print("give 3 integers for year, month, date as arguments.")
-
-    else:
-        year, month, date = map(int, sys.argv[1:])
-
-        print(find_day_string(year, month, date))

@@ -9,8 +9,9 @@ import logging
 
 
 class HillClimbing():
-    def __init__(self, fitness_calculator, retry_count=100, int_min=0, int_max=1000):
+    def __init__(self, fitness_calculator, mutants_fitness_calculator, retry_count=100, int_min=0, int_max=1000):
         self.fitness = fitness_calculator
+        self.mutants_fitness = mutants_fitness_calculator
         self.retry_count = retry_count
 
         self.int_min = int_min
