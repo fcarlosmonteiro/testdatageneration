@@ -109,7 +109,6 @@ class InputGenerator():
         else:
             return None
 
-    # Todo: modify here to deal with mutants
     def generate_all_inputs(self):
         next_target_functions = []
         mutant_next_target_functions = []
