@@ -11,6 +11,12 @@ Currently, it works only for the subset of Python functions satisfying these con
 
 - contains predicates that only involve relational operators (==, !=, <, >, <=, >=), integer variables, and calls to functions with integer return type
 
+## Comando para TCC
+
+```bash
+python -m covgen target/boolop.py -m hillclimbing
+```
+
 
 ## Run from Source
 
