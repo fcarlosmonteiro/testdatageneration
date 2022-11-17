@@ -1,0 +1,6 @@
+python3 -m covgen target/orelse.py -m hillclimbing
+[func1]
+1T: Inputs-> 11 -3304.76 5643.29
+1F: Inputs-> 10 -3304.76 5643.29
+2T: Inputs-> 10 11 5643.29
+2F: Inputs-> 10 10 5643.29

@@ -22,7 +22,7 @@ def triangle(a, b, c):
             longest = c
             m, n = a, b
 
-    if longest < (m + n):
+    if longest <= m + n: #PM
         return True
 
     return False

@@ -1,8 +1,12 @@
-import sys
-import copy
-import operator
+import copy, os, shutil
 
 import covgen.types.branchutil as branchutil
+import covgen.mutations.generation as generation_mutations
+
+
+from covgen.mutations.helpers import handle_mutant_with_logic_error
+
+from covgen.exceptions.no_target_function_exception import NoTargetFunctionException
 
 from covgen.parser.ast_parser import ASTParser
 
@@ -11,55 +15,78 @@ from covgen.localsearch.hillclimbing import HillClimbing
 from covgen.localsearch.avm import AVM
 
 
-class NoTargetFunctionException(Exception):
-    """Exception raised when no target function is found with given name.
-
-    Attributes:
-        name -- function name given
-        message -- explanation of the error
-    """
-
-    def __init__(self, name, message):
-        self.name = name
-        self.message = message
-
-
 class InputGenerator():
-    def __init__(self, file, function_name=None, method=None, retry=100, int_min=0, int_max=3000):
+    def __init__(self, file, function_name=None, method=None, retry=100, generate_mutants=False, int_min=0,
+                 int_max=3000):
         parser = ASTParser(file)
 
         self.method = method
+        self.filename = file
         self.retry_count = retry
         self.function_defs = parser.function_defs
         self.AST = parser.AST
         self.target_function = None
 
+        self.int_min = int_min
+        self.int_max = int_max
+
+        if generate_mutants:
+            amount_of_mutants = generation_mutations.generate(file)
+
+            self.mutants = []
+            self.dead_mutants = []
+
+            for mut in range(amount_of_mutants):
+                filename = '.tmp/mutant{}.py'.format(str(mut + 1))
+                try:
+                    mutant = InputGenerator(filename, function_name, method, retry)
+                    self.mutants.append(mutant)
+                except:
+                    handle_mutant_with_logic_error(filename)
+
         if function_name is not None:
             try:
-                self.set_target_function(function_name)
+                self._set_target_function(function_name)
 
             except NoTargetFunctionException as err:
                 print('{}: {}'.format(err.message, err.name))
                 exit(1)
 
-    def set_target_function(self, name):
+    def _set_target_function(self, name):
         for f in self.function_defs:
             if f.name == name:
                 target_function = copy.deepcopy(f)
 
                 target_function.insert_hooks_on_predicates()
                 self.target_function = target_function
-                # self.target_function.branch_tree.print()
                 return
 
         raise NoTargetFunctionException(
             name, 'Cannot find target function definition with given name')
 
-    def print_branch_tree(self):
+    def _print_branch_tree(self):
         if self.target_function is not None:
             self.target_function.branch_tree.print()
 
-    def generate_input(self, target_branch_id):
+    def _check_if_it_died_weakly_and_strongly(self, args):
+        args_str = ' '.join(map(str, args))
+
+        cwd = os.getcwd()
+
+        script = 'python {}/{} {}'.format(cwd, self.filename, args_str) 
+        stream = os.popen(script)
+        result_original = str(stream.read())
+
+        for dead_mutant in self.dead_mutants:
+            filename = dead_mutant.filename.split('.tmp/')[-1]
+            script = 'python {}/.tmp/dead_mutants/{} {}'.format(cwd, filename, args_str) 
+            stream = os.popen(script)
+            result_mutant = str(stream.read())
+            if result_original != result_mutant:
+                shutil.move('{}/.tmp/dead_mutants/{}'.format(cwd, filename), '{}/.tmp/dead_mutants/strongly_too/'.format(cwd))
+                self.dead_mutants.remove(dead_mutant)
+
+    def _generate_input(self, target_branch_id, list_args=[]):
         if self.target_function is None:
             print('Please set target function!')
             return
@@ -67,12 +94,23 @@ class InputGenerator():
         fitness_calculator = FitnessCalculator(
             self.target_function, target_branch_id, self.AST)
 
+        mutants_fitness_calculator = []
+        for mutant in self.mutants:
+            mutants_fitness_calculator.append(FitnessCalculator(
+                mutant.target_function, target_branch_id, mutant.AST))
+
         searcher = None
         if self.method == 'avm':
             searcher = AVM(fitness_calculator, self.retry_count)
 
         elif self.method == 'hillclimbing':
-            searcher = HillClimbing(fitness_calculator, self.retry_count)
+            searcher = HillClimbing(
+                fitness_calculator,
+                mutants_fitness_calculator,
+                self.retry_count,
+                int_min=self.int_min,
+                int_max=self.int_max,
+            )
 
         else:
             # mix possible methods
@@ -85,7 +123,23 @@ class InputGenerator():
             else:
                 searcher = HillClimbing(fitness_calculator, self.retry_count)
 
-        minimised_args, fitness_value = searcher.minimise()
+        minimised_args, fitness_value = searcher.minimise(list_args)
+
+        branch_type = branchutil.parse_branch_type(target_branch_id)
+        cwd = os.getcwd()
+        for mutant in self.mutants:
+            mutant_fitness_calculator = FitnessCalculator(
+                mutant.target_function, target_branch_id, mutant.AST)
+            try:
+                result_for_the_branch = mutant_fitness_calculator.calculate_mutante(minimised_args)
+                if branch_type != result_for_the_branch:
+                    self.dead_mutants.append(mutant)
+                    self.mutants.remove(mutant)
+                    shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
+                    self._check_if_it_died_weakly_and_strongly(minimised_args)
+            except:
+                self.mutants.remove(mutant)
+                handle_mutant_with_logic_error(mutant.filename)
 
         if fitness_value == 0:
             return minimised_args
@@ -95,13 +149,27 @@ class InputGenerator():
 
     def generate_all_inputs(self):
         next_target_functions = []
+        mutant_next_target_functions = []
         all_inputs = {}
+
+        for mutant in self.mutants:
+            if mutant.target_function is None:
+                for f in mutant.function_defs:
+                    mutant_next_target_functions.append(f.name)
+
+                mutant._set_target_function(mutant_next_target_functions.pop())
 
         if self.target_function is None:
             for f in self.function_defs:
                 next_target_functions.append(f.name)
 
-            self.set_target_function(next_target_functions.pop())
+            self._set_target_function(next_target_functions.pop())
+
+        mutant_branches = []
+
+        for mutant in self.mutants:
+            mutant_branch_tree = mutant.target_function.branch_tree
+            mutant_branches.append(mutant_branch_tree.get_all_branches())
 
         while True:
             branch_tree = self.target_function.branch_tree
@@ -110,11 +178,14 @@ class InputGenerator():
 
             inputs = {}
 
+            list_args = []
+
             for branch in branches:
                 branch_id = branchutil.create_branch_id(branch)
 
-                args = self.generate_input(branch_id)
 
+                args = self._generate_input(branch_id, list_args)
+                list_args = args
                 inputs[branch_id] = args
 
                 parents = branch_tree.get_nodes_on_path(branch_id)[1:]
@@ -130,7 +201,7 @@ class InputGenerator():
             if len(next_target_functions) == 0:
                 break
 
-            self.set_target_function(next_target_functions.pop())
+            self._set_target_function(next_target_functions.pop())
 
         return all_inputs
 
@@ -144,7 +215,6 @@ class InputGenerator():
                 print('no branch detected')
 
             for branch_id, args in sorted(inputs.items(), key=branchutil.compare_branch_id):
-                #print(args)
                 line = '{}: Inputs->'.format(branch_id)
                 if args is None:
                     line += ' -'
@@ -156,58 +226,3 @@ class InputGenerator():
 
             print('')
             print(".......FIM.......")
-
-
-def print_help():
-    print('Usage: python inputgenerator.py <target file location>')
-    print(
-        '       python inputgenerator.py <target file location> --function <target function name> --method <method name=avm or hillclimbing> --retry-count <retry_count> --int-min <minimum int> --int-max <maximum int>')
-    print(
-        '       python inputgenerator.py <target file location> -f <target function name> -m <method name=avm or hillclimbing> -r <retry_count>')
-
-
-def execute():
-    if len(sys.argv) < 2:
-        print_help()
-        exit(1)
-
-    target_file = sys.argv[1]
-    target_function = None
-    search_method = None
-    retry_count = 100
-    int_min = -10000
-    int_max = 10000
-
-    index = 2
-    while index + 1 < len(sys.argv):
-        option = sys.argv[index]
-        if option == '-f' or option == '--function':
-            target_function = sys.argv[index+1]
-
-        elif option == '-m' or option == '--method':
-            search_method = sys.argv[index+1]
-
-        elif option == '-r' or option == '--retry-count':
-            retry_count = int(sys.argv[index+1])
-
-        elif option == '--int-min':
-            int_min = int(sys.argv[index+1])
-        
-        elif option == '--int-max':
-            int_max = int(sys.argv[index+1])
-
-        else:
-            print('unknown option: {}'.format(option))
-            print_help()
-            exit(1)
-
-        index = index + 2
-
-    generator = InputGenerator(
-        target_file, target_function, method=search_method, retry=retry_count)
-
-    generator.generate_all_inputs_and_print()
-
-
-if __name__ == "__main__":
-    execute()

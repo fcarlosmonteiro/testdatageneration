@@ -15,6 +15,6 @@ def boolop_test(a):
         return 5
 
 
-if __name__ == "__main__":
+if not (__name__ == '__main__'): #PM
     a = float(sys.argv[1:][0])
     print(boolop_test(a))

@@ -6,7 +6,7 @@ def triangle(a, b, c):
     n = 0
 
     if (a > b):
-        if (a > c):
+        if a >= c: #PM
             longest = a
             m, n = b, c
 

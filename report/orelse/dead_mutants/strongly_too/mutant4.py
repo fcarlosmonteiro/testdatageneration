@@ -1,7 +1,7 @@
 import sys
 
 def func1(a, b, c):
-    if a > 10:
+    if a < 10: #PM
         for i in range(10):
             b += 1
 

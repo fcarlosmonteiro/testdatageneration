@@ -1,20 +1,9 @@
 import ast
 import astor
 
+from covgen.exceptions.not_interceptable_exception import NotInterceptableException
+
 from covgen.types.branch_tree import BranchNode, BranchTree
-
-
-class NotInterceptableException(Exception):
-    """Exception raised for errors when not able to inject trace
-
-    Attributes:
-        predicate -- predicate in not expected form
-        message -- explanation of the error
-    """
-
-    def __init__(self, predicate, message):
-        self.predicate = predicate
-        self.message = message
 
 
 class WalkPredicates(astor.TreeWalk):

@@ -12,7 +12,7 @@ def func1(a, b, c):
 
     return a, b, c
 
-if __name__ == "__main__":
+if not (__name__ == '__main__'): #PM
     a = float(sys.argv[1:][0])
     b = float(sys.argv[1:][1])
     c = float(sys.argv[1:][2])

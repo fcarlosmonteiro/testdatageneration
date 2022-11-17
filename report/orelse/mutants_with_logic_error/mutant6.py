@@ -6,7 +6,7 @@ def func1(a, b, c):
             b += 1
 
     else:
-        if b > 10:
+    elif b < 10: #PM
             for i in range(5):
                 c += 1
 

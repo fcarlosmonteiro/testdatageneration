@@ -8,7 +8,7 @@ def boolop_test(a):
     if result % 3 == 0:
         return 3
 
-    elif result % 4 == 0:
+    elif result % 4 != 0: #PM
         return 4
 
     elif not result % 5 == 0:
