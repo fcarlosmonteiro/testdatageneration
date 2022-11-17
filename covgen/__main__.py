@@ -53,7 +53,9 @@ def execute():
         target_function,
         method=search_method,
         retry=retry_count,
-        generate_mutants=True
+        generate_mutants=True,
+        int_min=int_min,
+        int_max=int_max
     )
 
     generator.generate_all_inputs_and_print()

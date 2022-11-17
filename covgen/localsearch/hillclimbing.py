@@ -81,13 +81,14 @@ class HillClimbing():
 
                 logging.debug((args, fitness))
 
-    def minimise(self):
+    def minimise(self, initial_args=[]):
         minimised_args = []
         fitness_value = 0
 
         for i in range(self.retry_count):
-            initial_args = self._generate_random_decimals(
-                self.fitness.get_args_count())
+            if not initial_args or not len(initial_args):
+                initial_args = self._generate_random_decimals(
+                    self.fitness.get_args_count())
 
             minimised_args, fitness_value = self.do_hill_descending(
                 initial_args)

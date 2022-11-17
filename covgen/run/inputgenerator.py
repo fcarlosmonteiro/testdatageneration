@@ -24,16 +24,23 @@ class InputGenerator():
         self.AST = parser.AST
         self.target_function = None
 
+        self.int_min = int_min
+        self.int_max = int_max
+
         if generate_mutants:
             amount_of_mutants = generation_mutations.generate(file)
 
             self.mutants = []
             self.dead_mutants = []
 
-            for mut in range(amount_of_mutants):
-                filename = '.tmp/mutant{}.py'.format(str(mut + 1))
-                mutant = InputGenerator(filename, function_name, method, retry)
-                self.mutants.append(mutant)
+            try:
+                for mut in range(amount_of_mutants):
+                    filename = '.tmp/mutant{}.py'.format(str(mut + 1))
+                    mutant = InputGenerator(filename, function_name, method, retry)
+                    self.mutants.append(mutant)
+            except:
+                cwd = os.getcwd()
+                shutil.move('{}/{}'.format(cwd, filename), '{}/.tmp/mutants_with_logic_error/'.format(cwd))
 
         if function_name is not None:
             try:
@@ -59,7 +66,7 @@ class InputGenerator():
         if self.target_function is not None:
             self.target_function.branch_tree.print()
 
-    def _generate_input(self, target_branch_id):
+    def _generate_input(self, target_branch_id, list_args=[]):
         if self.target_function is None:
             print('Please set target function!')
             return
@@ -77,7 +84,13 @@ class InputGenerator():
             searcher = AVM(fitness_calculator, self.retry_count)
 
         elif self.method == 'hillclimbing':
-            searcher = HillClimbing(fitness_calculator, mutants_fitness_calculator, self.retry_count)
+            searcher = HillClimbing(
+                fitness_calculator,
+                mutants_fitness_calculator,
+                self.retry_count,
+                int_min=self.int_min,
+                int_max=self.int_max,
+            )
 
         else:
             # mix possible methods
@@ -90,7 +103,7 @@ class InputGenerator():
             else:
                 searcher = HillClimbing(fitness_calculator, self.retry_count)
 
-        minimised_args, fitness_value = searcher.minimise()
+        minimised_args, fitness_value = searcher.minimise(list_args)
 
         branch_type = branchutil.parse_branch_type(target_branch_id)
         cwd = os.getcwd()
@@ -140,11 +153,14 @@ class InputGenerator():
 
             inputs = {}
 
+            list_args = []
+
             for branch in branches:
                 branch_id = branchutil.create_branch_id(branch)
 
-                args = self._generate_input(branch_id)
 
+                args = self._generate_input(branch_id, list_args)
+                list_args = args
                 inputs[branch_id] = args
 
                 parents = branch_tree.get_nodes_on_path(branch_id)[1:]
