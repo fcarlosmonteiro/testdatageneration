@@ -15,7 +15,7 @@ def triangle(a, b, c):
             m, n = a, b
 
     else:
-        if (b > c):
+    elif b >= c: #PM
             longest = b
             m, n = a, c
         else:
