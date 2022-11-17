@@ -68,6 +68,24 @@ class InputGenerator():
         if self.target_function is not None:
             self.target_function.branch_tree.print()
 
+    def _check_if_it_died_weakly_and_strongly(self, args):
+        args_str = ' '.join(map(str, args))
+
+        cwd = os.getcwd()
+
+        script = 'python {}/{} {}'.format(cwd, self.filename, args_str) 
+        stream = os.popen(script)
+        result_original = str(stream.read())
+
+        for dead_mutant in self.dead_mutants:
+            filename = dead_mutant.filename.split('.tmp/')[-1]
+            script = 'python {}/.tmp/dead_mutants/{} {}'.format(cwd, filename, args_str) 
+            stream = os.popen(script)
+            result_mutant = str(stream.read())
+            if result_original != result_mutant:
+                shutil.move('{}/.tmp/dead_mutants/{}'.format(cwd, filename), '{}/.tmp/dead_mutants/strongly_too/'.format(cwd))
+                self.dead_mutants.remove(dead_mutant)
+
     def _generate_input(self, target_branch_id, list_args=[]):
         if self.target_function is None:
             print('Please set target function!')
@@ -118,6 +136,7 @@ class InputGenerator():
                     self.dead_mutants.append(mutant)
                     self.mutants.remove(mutant)
                     shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
+                    self._check_if_it_died_weakly_and_strongly(minimised_args)
             except:
                 self.mutants.remove(mutant)
                 handle_mutant_with_logic_error(mutant.filename)
