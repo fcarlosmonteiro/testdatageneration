@@ -11,7 +11,7 @@ def boolop_test(a):
     elif result % 4 == 0:
         return 4
 
-    elif not result % 5 == 0:
+    elif result % 5 == 0: #PM
         return 5
 
 

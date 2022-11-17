@@ -1,3 +1,5 @@
+import sys
+
 def boolop_test(a):
     result = a % 10
     result += (a // 10) % 10
@@ -9,5 +11,10 @@ def boolop_test(a):
     elif result % 4 == 0:
         return 4
 
-    elif result % 5 == 0: #PM
+    elif not result % 5 == 0:
         return 5
+
+
+if __name__ != '__main__': #PM
+    a = float(sys.argv[1:][0])
+    print(boolop_test(a))

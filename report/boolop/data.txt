@@ -1,8 +1,8 @@
 python3 -m covgen target/boolop.py -m hillclimbing
 [boolop_test]
-1T: Inputs-> 2795
-1F: Inputs-> 2796
+1T: Inputs-> -
+1F: Inputs-> -3473.29
 2T: Inputs-> -
-2F: Inputs-> -2853.06
-3T: Inputs-> -2853.06
+2F: Inputs-> -2416.61
+3T: Inputs-> -2416.61
 3F: Inputs-> -
