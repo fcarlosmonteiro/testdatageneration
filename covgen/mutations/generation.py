@@ -25,7 +25,10 @@ def _mutants_generator(target, unit_test):
         pass
 
     os.mkdir(path)
+    'strongly only'
     os.mkdir('{}/dead_mutants'.format(path))
+    os.mkdir('{}/dead_mutants/strongly_too'.format(path))
+    os.mkdir('{}/strongly_only/'.format(path))
     os.mkdir('{}/mutants_with_logic_error'.format(path))
 
     for m in op_mut:

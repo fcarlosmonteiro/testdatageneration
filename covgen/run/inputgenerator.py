@@ -3,6 +3,9 @@ import copy, os, shutil
 import covgen.types.branchutil as branchutil
 import covgen.mutations.generation as generation_mutations
 
+
+from covgen.mutations.helpers import handle_mutant_with_logic_error
+
 from covgen.exceptions.no_target_function_exception import NoTargetFunctionException
 
 from covgen.parser.ast_parser import ASTParser
@@ -33,14 +36,13 @@ class InputGenerator():
             self.mutants = []
             self.dead_mutants = []
 
-            try:
-                for mut in range(amount_of_mutants):
-                    filename = '.tmp/mutant{}.py'.format(str(mut + 1))
+            for mut in range(amount_of_mutants):
+                filename = '.tmp/mutant{}.py'.format(str(mut + 1))
+                try:
                     mutant = InputGenerator(filename, function_name, method, retry)
                     self.mutants.append(mutant)
-            except:
-                cwd = os.getcwd()
-                shutil.move('{}/{}'.format(cwd, filename), '{}/.tmp/mutants_with_logic_error/'.format(cwd))
+                except:
+                    handle_mutant_with_logic_error(filename)
 
         if function_name is not None:
             try:
@@ -110,11 +112,15 @@ class InputGenerator():
         for mutant in self.mutants:
             mutant_fitness_calculator = FitnessCalculator(
                 mutant.target_function, target_branch_id, mutant.AST)
-            result_for_the_branch = mutant_fitness_calculator.calculate_mutante(minimised_args)
-            if branch_type != result_for_the_branch:
-                self.dead_mutants.append(mutant)
+            try:
+                result_for_the_branch = mutant_fitness_calculator.calculate_mutante(minimised_args)
+                if branch_type != result_for_the_branch:
+                    self.dead_mutants.append(mutant)
+                    self.mutants.remove(mutant)
+                    shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
+            except:
                 self.mutants.remove(mutant)
-                shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
+                handle_mutant_with_logic_error(mutant.filename)
 
         if fitness_value == 0:
             return minimised_args
