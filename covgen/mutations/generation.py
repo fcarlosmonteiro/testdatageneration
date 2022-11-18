@@ -57,7 +57,9 @@ def _mutants_generator(target, unit_test):
 def generate(file):
     target = file
     path_name, type_format = file.split('.')
-    unit_test = '{}_test.{}'.format(path_name, type_format)
+    path, filename = path_name.split('/')
+
+    unit_test = '{}/__test__/{}_test.{}'.format(path, filename, type_format)
     amount_of_mutants = _mutants_generator(target, unit_test)
 
     return amount_of_mutants
