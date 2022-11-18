@@ -1,0 +1,16 @@
+python -m covgen target/uri_1943.py -m hillclimbing
+[func]
+1T: Inputs-> 1
+1F: Inputs-> 2
+2T: Inputs-> 2
+2F: Inputs-> 4
+3T: Inputs-> 4
+3F: Inputs-> 6
+4T: Inputs-> 6
+4F: Inputs-> 11
+5T: Inputs-> 11
+5F: Inputs-> 26
+6T: Inputs-> 26
+6F: Inputs-> 51
+
+.......FIM.......
