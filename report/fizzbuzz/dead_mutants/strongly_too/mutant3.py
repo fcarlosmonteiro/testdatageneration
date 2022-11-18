@@ -41,7 +41,7 @@ def _determine_output(iteration) -> str:
 
     if fizz and buzz:
         output = 'FizzBuzz'
-    elif not fizz: #PM | type_kill=weakly args=[-5802.16] | type_kill=strongly args=[7261.08]
+    elif not fizz: #PM | type_kill=weakly args=[-8948.25] | type_kill=strongly args=[4699.99]
         output = 'Fizz'
     elif buzz:
         output = 'Buzz'

@@ -37,7 +37,7 @@ def _validate_iterations(iterations):
 def _determine_output(iteration) -> str:
     """Determine what the output of each iteration is based on its divisibility."""
     fizz = iteration % 3 == 0
-    buzz = iteration % 5 != 0 #PM | type_kill=weakly args=[-5802.16] | type_kill=strongly args=[7261.08]
+    buzz = iteration % 5 != 0 #PM | type_kill=weakly args=[-8948.25] | type_kill=strongly args=[4699.99]
 
     if fizz and buzz:
         output = 'FizzBuzz'

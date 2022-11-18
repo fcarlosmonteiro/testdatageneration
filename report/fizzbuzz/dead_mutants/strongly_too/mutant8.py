@@ -31,12 +31,12 @@ def generate_fizzbuzz(iterations):
 
 def _validate_iterations(iterations):
     """Validate the iterations before proceeding."""
-    return iterations > 1 #PM | type_kill=weakly args=[7261.08] | type_kill=strongly args=[7261.08]
+    return iterations < 1
 
 
 def _determine_output(iteration) -> str:
     """Determine what the output of each iteration is based on its divisibility."""
-    fizz = iteration % 3 == 0
+    fizz = iteration % 3 != 0 #PM | type_kill=weakly args=[4701] | type_kill=strongly args=[4702]
     buzz = iteration % 5 == 0
 
     if fizz and buzz:
