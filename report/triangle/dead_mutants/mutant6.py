@@ -5,7 +5,7 @@ def triangle(a, b, c):
     m = 0
     n = 0
 
-    if a < b: #PM
+    if a < b: #PM | type_kill=weakly args=[-1883, -1883.79, -3994.62]
         if (a > c):
             longest = a
             m, n = b, c

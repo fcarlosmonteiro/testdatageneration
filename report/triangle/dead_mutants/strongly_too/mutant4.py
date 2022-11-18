@@ -22,7 +22,7 @@ def triangle(a, b, c):
             longest = c
             m, n = a, b
 
-    if not (longest < m + n): #PM
+    if not (longest < m + n): #PM | type_kill=weakly args=[-1884, -1882, -1883] | type_kill=strongly args=[-1884, -1882, -1883]
         return True
 
     return False
