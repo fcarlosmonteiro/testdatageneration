@@ -11,7 +11,7 @@ def bubble_sort(item1,item2,item3,item4,item5):
     dist=len(list)
     for j in range(0,dist):
         for i in range(0,dist-1):
-            if list[i] < list[i + 1]: #PM
+            if list[i] < list[i + 1]: #PM | type_kill=weakly args=[7791.32, -937.97, 8658.77, -8750.17, 805.27] | type_kill=strongly args=[7791.32, -937.97, 8658.77, -8750.17, 805.27]
                 t=list[i]
                 list[i]=list[i+1]
                 list[i+1]=t
