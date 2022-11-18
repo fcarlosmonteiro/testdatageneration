@@ -1,0 +1,17 @@
+python3 -m covgen target/fizzbuzz.py -m hillclimbing
+[_determine_output]
+1T: Inputs-> -
+1F: Inputs-> -8114.76
+2T: Inputs-> -
+2F: Inputs-> 7261.08
+3T: Inputs-> -
+3F: Inputs-> -8455.49
+
+.......FIM.......
+[_validate_iterations]
+no branch detected
+
+.......FIM.......
+[generate_fizzbuzz]
+1T: Inputs-> -
+1F: Inputs-> -

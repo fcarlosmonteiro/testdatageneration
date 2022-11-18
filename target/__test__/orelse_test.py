@@ -1,5 +1,5 @@
 from unittest import TestCase
-from orelse import func1
+from target.orelse import func1
 
 
 class OrelseTest(TestCase):

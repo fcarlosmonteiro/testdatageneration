@@ -1,5 +1,5 @@
 from unittest import TestCase
-from boolop import boolop_test
+from target.boolop import boolop_test
 
 
 class BoolopTest(TestCase):

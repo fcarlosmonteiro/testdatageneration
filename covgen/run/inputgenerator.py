@@ -4,7 +4,7 @@ import covgen.types.branchutil as branchutil
 import covgen.mutations.generation as generation_mutations
 
 
-from covgen.mutations.helpers import handle_mutant_with_logic_error
+from covgen.mutations.helpers import handle_mutant_with_logic_error, handle_add_of_value_that_killed_mutant
 
 from covgen.exceptions.no_target_function_exception import NoTargetFunctionException
 
@@ -83,6 +83,7 @@ class InputGenerator():
             stream = os.popen(script)
             result_mutant = str(stream.read())
             if result_original != result_mutant:
+                handle_add_of_value_that_killed_mutant('.tmp/dead_mutants/{}'.format(filename), args, 'strongly')
                 shutil.move('{}/.tmp/dead_mutants/{}'.format(cwd, filename), '{}/.tmp/dead_mutants/strongly_too/'.format(cwd))
                 self.dead_mutants.remove(dead_mutant)
 
@@ -107,7 +108,7 @@ class InputGenerator():
             searcher = HillClimbing(
                 fitness_calculator,
                 mutants_fitness_calculator,
-                self.retry_count,
+                retry_count=self.retry_count,
                 int_min=self.int_min,
                 int_max=self.int_max,
             )
@@ -121,7 +122,7 @@ class InputGenerator():
                 return minimised_args
 
             else:
-                searcher = HillClimbing(fitness_calculator, self.retry_count)
+                searcher = HillClimbing(fitness_calculator, [], retry_count=self.retry_count)
 
         minimised_args, fitness_value = searcher.minimise(list_args)
 
@@ -135,6 +136,7 @@ class InputGenerator():
                 if branch_type != result_for_the_branch:
                     self.dead_mutants.append(mutant)
                     self.mutants.remove(mutant)
+                    handle_add_of_value_that_killed_mutant(mutant.filename, minimised_args, 'weakly')
                     shutil.move('{}/{}'.format(cwd, mutant.filename), '{}/.tmp/dead_mutants/'.format(cwd))
                     self._check_if_it_died_weakly_and_strongly(minimised_args)
             except:

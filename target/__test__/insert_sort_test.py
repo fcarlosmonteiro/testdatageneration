@@ -1,5 +1,5 @@
 from unittest import TestCase
-from insert_sort import insert_sort
+from target.insert_sort import insert_sort
 
 
 class InsertSortTest(TestCase):

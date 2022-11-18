@@ -1,5 +1,5 @@
 from unittest import TestCase
-from triangle import triangle
+from target.triangle import triangle
 
 
 class TriangleTest(TestCase):
