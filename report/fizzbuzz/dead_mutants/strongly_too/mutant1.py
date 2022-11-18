@@ -21,7 +21,7 @@ def generate_fizzbuzz(iterations):
     """Iterate through numbers and print FizzBuzz to console."""
     iterations = int(float(iterations))
     output = ''
-    if not (_validate_iterations(iterations)): #PM | type_kill=weakly args=[-5802.16] | type_kill=strongly args=[-5802.16]
+    if not (_validate_iterations(iterations)): #PM | type_kill=weakly args=[-8948.25] | type_kill=strongly args=[-8948.25]
         return 'iterations must be greater than or equal to 1.'
 
     for iteration in range(1, iterations + 1):

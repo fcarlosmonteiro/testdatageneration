@@ -1,4 +1,6 @@
-python3 -m covgen target/bubble_sort.py -m hillclimbing
+python3 -m covgen target/bubble_sort.py -m hillclimbing                                                                                    130 ↵
 [bubble_sort]
-1T: Inputs-> -7513.15 -7311.42 4711.2 3149.07 -49.87
-1F: Inputs-> -7513.15 -7311.42 4711.2 3149.07 -49.87
+1T: Inputs-> 7791.32 -937.97 8658.77 -8750.17 805.27
+1F: Inputs-> 7791.32 -937.97 8658.77 -8750.17 805.27
+
+.......FIM.......

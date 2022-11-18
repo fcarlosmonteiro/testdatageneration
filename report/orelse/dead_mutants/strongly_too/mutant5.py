@@ -1,7 +1,7 @@
 import sys
 
 def func1(a, b, c):
-    if a >= 10: #PM
+    if a >= 10: #PM | type_kill=weakly args=[10, 10, 1759.0] | type_kill=strongly args=[10, 10, 1759.0]
         for i in range(10):
             b += 1
 

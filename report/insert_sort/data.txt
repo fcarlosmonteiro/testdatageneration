@@ -1,4 +1,6 @@
-python3 -m covgen target/insert_sort.py -m hillclimbing
+python3 -m covgen target/insert_sort.py -m hillclimbing         
 [insert_sort]
-1T: Inputs-> -6988.21 -1084.65 1688.07 -5397.23 439.54
-1F: Inputs-> -6988.21 -1084.65 1688.07 -5397.23 439.54
+1T: Inputs-> 2038.07 -2657.29 5792.23 -7785.11 -6426.6
+1F: Inputs-> 2038.07 -2657.29 5792.23 -7785.11 -6426.6
+
+.......FIM.......

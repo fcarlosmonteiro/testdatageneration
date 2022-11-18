@@ -31,7 +31,7 @@ def generate_fizzbuzz(iterations):
 
 def _validate_iterations(iterations):
     """Validate the iterations before proceeding."""
-    return iterations <= 1 #PM | type_kill=weakly args=[-5802.16]
+    return iterations <= 1 #PM | type_kill=weakly args=[-8948.25]
 
 
 def _determine_output(iteration) -> str:

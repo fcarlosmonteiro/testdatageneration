@@ -8,7 +8,7 @@ def boolop_test(a):
     if result % 3 == 0:
         return 3
 
-    elif not (result % 4 == 0): #PM
+    elif not (result % 4 == 0): #PM | type_kill=weakly args=[80.65] | type_kill=strongly args=[80.65]
         return 4
 
     elif not result % 5 == 0:
