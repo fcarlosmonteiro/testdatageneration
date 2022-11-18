@@ -5,7 +5,7 @@ def boolop_test(a):
     result += (a // 10) % 10
     result += (a // 100) % 10
 
-    if result % 3 != 0: #PM
+    if result % 3 != 0: #PM | type_kill=weakly args=[1280] | type_kill=strongly args=[1280]
         return 3
 
     elif result % 4 == 0:

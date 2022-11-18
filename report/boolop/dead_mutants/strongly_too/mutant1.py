@@ -11,7 +11,7 @@ def boolop_test(a):
     elif result % 4 == 0:
         return 4
 
-    elif result % 5 == 0: #PM
+    elif result % 5 == 0: #PM | type_kill=weakly args=[1280] | type_kill=strongly args=[1280]
         return 5
 
 

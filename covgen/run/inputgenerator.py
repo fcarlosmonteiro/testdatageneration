@@ -16,7 +16,7 @@ from covgen.localsearch.avm import AVM
 
 
 class InputGenerator():
-    def __init__(self, file, function_name=None, method=None, retry=100, generate_mutants=False, int_min=0,
+    def __init__(self, file, function_name=None, method=None, retry=1000, generate_mutants=False, int_min=0,
                  int_max=3000):
         parser = ASTParser(file)
 
