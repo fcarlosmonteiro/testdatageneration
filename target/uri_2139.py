@@ -4,8 +4,8 @@ import sys
 def func(x, y):
     m = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31,30, 31]
 
-    x = int(x)
-    y = int(y)
+    x = int(float(x))
+    y = int(float(y))
     s = 0
 
     for i in range(x - 1):
@@ -23,6 +23,6 @@ def func(x, y):
         return "Ja passou!"
 
 if __name__ == '__main__':
-    x = float(sys.argv[1:][0])
-    y = float(sys.argv[1:][1])
+    x = sys.argv[1:][0]
+    y = sys.argv[1:][1]
     print(func(x, y))

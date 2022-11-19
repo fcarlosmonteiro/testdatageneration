@@ -1,7 +1,7 @@
 import sys
 
 def func(item1,item2,item3,item4,item5):
-    x=[item1,item2,item3,item4,item5]
+    x=[float(item1),float(item2),float(item3),float(item4),float(item5)]
     m2 = 0
     m3 = 0
     m4 = 0
@@ -25,9 +25,9 @@ def func(item1,item2,item3,item4,item5):
     return valor
 
 if __name__ == '__main__':
-    item1 = float(sys.argv[1:][0])
-    item2 = float(sys.argv[1:][1])
-    item3 = float(sys.argv[1:][2])
-    item4 = float(sys.argv[1:][3])
-    item5 = float(sys.argv[1:][4])
+    item1 = sys.argv[1:][0]
+    item2 = sys.argv[1:][1]
+    item3 = sys.argv[1:][2]
+    item4 = sys.argv[1:][3]
+    item5 = sys.argv[1:][4]
     print(func(item1,item2,item3,item4,item5))
