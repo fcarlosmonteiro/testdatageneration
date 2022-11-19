@@ -1,0 +1,8 @@
+python -m covgen target/type_triangle.py -m hillclimbing  
+[type_triangle]
+1T: Inputs-> 9405 9405.27 -1155.19
+1F: Inputs-> 9406 9405.27 -1155.19
+2T: Inputs-> -
+2F: Inputs-> -6067.31 5936.89 326.18
+
+.......FIM.......
