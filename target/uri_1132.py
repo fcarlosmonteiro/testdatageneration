@@ -2,6 +2,8 @@ import sys
 
 
 def func(x, y):
+    x = float(x)
+    y = float(y)
     z = 0
 
     if x > y:
@@ -19,6 +21,6 @@ def func(x, y):
     return s
 
 if __name__ == '__main__':
-    x = float(sys.argv[1:][0])
-    y = float(sys.argv[1:][1])
+    x = sys.argv[1:][0]
+    y = sys.argv[1:][1]
     print(func(x, y))

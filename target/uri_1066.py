@@ -25,9 +25,9 @@ def func(item1,item2,item3,item4,item5):
 
 
 if __name__ == "__main__":
-    item1 = float(sys.argv[1:][0])
-    item2 = float(sys.argv[1:][1])
-    item3 = float(sys.argv[1:][2])
-    item4 = float(sys.argv[1:][3])
-    item5 = float(sys.argv[1:][4])
+    item1 = sys.argv[1:][0]
+    item2 = sys.argv[1:][1]
+    item3 = sys.argv[1:][2]
+    item4 = sys.argv[1:][3]
+    item5 = sys.argv[1:][4]
     print(func(item1,item2,item3,item4,item5))
