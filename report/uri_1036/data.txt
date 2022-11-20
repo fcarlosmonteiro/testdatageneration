@@ -1,0 +1,8 @@
+python -m covgen target/uri_1036.py -m hillclimbing
+[func]
+1T: Inputs-> 0 -93.89 -3900.68
+1F: Inputs-> 1 -93.89 -3900.68
+2T: Inputs-> 1 0 1
+2F: Inputs-> 1 2 1
+
+.......FIM.......
