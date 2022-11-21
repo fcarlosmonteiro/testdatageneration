@@ -19,7 +19,7 @@ class RandomTest():
         path_name, type_format = self.path_original.split('.')
         path, filename = path_name.split('/')
 
-        path_mutants = '{}/random_test/mutants/{}/'.format(cwd, filename)
+        path_mutants = '{}/random_test/mutants/{}'.format(cwd, filename)
         for i in range(self.amount_of_data_set):
             new_args = []
             for j in range(self.amount_of_data_paths):
@@ -39,11 +39,15 @@ class RandomTest():
             result_original = str(stream.read())
             print("Random Inputs -> {}".format(args_str))
             for nmut in list_mutants:
-                script = 'python {}/mutant{}.py {}'.format(path_mutants,nmut, args_str)
-                stream = os.popen(script)
-                result_mutant = str(stream.read())
-                if result_original != result_mutant:
-                    handle_add_of_value_that_killed_mutant('random_test/mutants/{}/mutant{}.py'.format(filename, nmut), args, 'random')
-                    shutil.move('{}/mutant{}.py'.format(path_mutants, nmut), '{}/dead_mutants'.format(path_mutants))
-                    list_mutants.remove(nmut)
+                try:
+                    script = 'python {}/mutant{}.py {}'.format(path_mutants,nmut, args_str)
+                    stream = os.popen(script)
+                    result_mutant = str(stream.read())
+                    if result_original != result_mutant:
+                        handle_add_of_value_that_killed_mutant('random_test/mutants/{}/mutant{}.py'.format(filename, nmut), args, 'random')
+                        shutil.move('{}/mutant{}.py'.format(path_mutants, nmut), '{}/dead_mutants'.format(path_mutants))
+                        list_mutants.remove(nmut)
+                except:
+                    print("Error no mutante {}".format(nmut))
+                    continue
         
