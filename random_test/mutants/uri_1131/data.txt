@@ -1,0 +1,5 @@
+python -m random_test --path-original target/uri_1131.py --amount-of-data-set 3 --amount-of-data-paths 2 --amount-mutants 12 
+[uri_1131]
+Random Inputs -> -7880.359388273417 -9734.43983998443
+Random Inputs -> 8409.361810040282 -2887.776742358701
+Random Inputs -> 8027.062822083441 6773.931266300966
