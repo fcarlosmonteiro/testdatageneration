@@ -1,0 +1,3 @@
+python -m random_test --path-original target/selection_sort.py --amount-of-data-set 1 --amount-of-data-paths 5 --amount-mutants 15 
+[selection_sort]
+Random Inputs -> 3120.912559955186 -4881.723783089147 6778.865895311537 1930.774145906218 5929.16623460013
