@@ -1,0 +1,5 @@
+python -m random_test --path-original target/type_triangle.py --amount-of-data-set 3 --amount-of-data-paths 3 --amount-mutants 9 
+[type_triangle]
+Random Inputs -> -2209.800381310556 2956.1364476114813 1413.743100859232
+Random Inputs -> 3106.0585569425984 5974.397201923606 -6828.962298689203
+Random Inputs -> -3770.3785081045926 -4040.640403401454 -6443.542448291182
