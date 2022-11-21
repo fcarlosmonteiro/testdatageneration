@@ -1,0 +1,5 @@
+python -m random_test --path-original target/orelse.py --amount-of-data-set 3 --amount-of-data-paths 3 --amount-mutants 8     
+[orelse]
+Random Inputs -> -6584.894352697302 -4687.454186876743 -6893.192442399186
+Random Inputs -> -700.8482410189499 9086.468548918314 3671.884723955656
+Random Inputs -> -6212.4048020063055 -1429.6018302901775 2181.050195009713
