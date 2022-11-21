@@ -1,0 +1,7 @@
+python -m random_test --path-original target/fizzbuzz.py --amount-of-data-set 5 --amount-of-data-paths 1 --amount-mutants 10   
+[fizzbuzz]
+Random Inputs -> -7028.119404789763
+Random Inputs -> -6924.478253392925
+Random Inputs -> -4038.2129342369353
+Random Inputs -> 3482.3293824616576
+Random Inputs -> -4365.2066716127465
