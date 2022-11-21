@@ -1,0 +1,450 @@
+------------values1-----------------
+[boolop_test]
+1T: Inputs-> 7060
+1F: Inputs-> 7061
+2T: Inputs-> 7062
+2F: Inputs-> 7061
+3T: Inputs-> 7061
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values2-----------------
+[boolop_test]
+1T: Inputs-> -5604
+1F: Inputs-> -5603
+2T: Inputs-> -5602
+2F: Inputs-> -5603
+3T: Inputs-> -5603
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values3-----------------
+[boolop_test]
+1T: Inputs-> -7922
+1F: Inputs-> -7921
+2T: Inputs-> -7921
+2F: Inputs-> 8843.93
+3T: Inputs-> 8843.93
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values4-----------------
+[boolop_test]
+1T: Inputs-> -5982
+1F: Inputs-> -5981
+2T: Inputs-> -
+2F: Inputs-> 7354.99
+3T: Inputs-> 7354.99
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values5-----------------
+[boolop_test]
+1T: Inputs-> -613
+1F: Inputs-> -612
+2T: Inputs-> -611
+2F: Inputs-> -612
+3T: Inputs-> -612
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values6-----------------
+[boolop_test]
+1T: Inputs-> 2441
+1F: Inputs-> 2442
+2T: Inputs-> -
+2F: Inputs-> -7508.97
+3T: Inputs-> -7508.97
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values7-----------------
+[boolop_test]
+1T: Inputs-> 3963
+1F: Inputs-> 3964
+2T: Inputs-> 3965
+2F: Inputs-> 3964
+3T: Inputs-> 3964
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values8-----------------
+[boolop_test]
+1T: Inputs-> 102
+1F: Inputs-> 103
+2T: Inputs-> 103
+2F: Inputs-> 104
+3T: Inputs-> -
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values9-----------------
+[boolop_test]
+1T: Inputs-> -
+1F: Inputs-> -799.47
+2T: Inputs-> -798
+2F: Inputs-> -797
+3T: Inputs-> -
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 0
+weak: 3
+strong: 9
+total: 9
+------------------------------------
+------------values10-----------------
+[boolop_test]
+1T: Inputs-> -5775
+1F: Inputs-> -5774
+2T: Inputs-> -
+2F: Inputs-> -5216.72
+3T: Inputs-> -5216.72
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values11-----------------
+[boolop_test]
+1T: Inputs-> 9651
+1F: Inputs-> 9652
+2T: Inputs-> -
+2F: Inputs-> 5368.53
+3T: Inputs-> 5368.53
+3F: Inputs-> 5370
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values12-----------------
+[boolop_test]
+1T: Inputs-> -4322
+1F: Inputs-> -4321
+2T: Inputs-> -
+2F: Inputs-> -550.09
+3T: Inputs-> -550.09
+3F: Inputs-> -549
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values13-----------------
+[boolop_test]
+1T: Inputs-> 8666
+1F: Inputs-> 8667
+2T: Inputs-> 8668
+2F: Inputs-> 8667
+3T: Inputs-> 8667
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values14-----------------
+[boolop_test]
+1T: Inputs-> -3190
+1F: Inputs-> -3189
+2T: Inputs-> -
+2F: Inputs-> 3995.49
+3T: Inputs-> 3995.49
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values15-----------------
+[boolop_test]
+1T: Inputs-> -7592
+1F: Inputs-> -7591
+2T: Inputs-> -
+2F: Inputs-> 253.75
+3T: Inputs-> 253.75
+3F: Inputs-> 253
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values16-----------------
+[boolop_test]
+1T: Inputs-> -1715
+1F: Inputs-> -1714
+2T: Inputs-> -1714
+2F: Inputs-> -1713
+3T: Inputs-> -1713
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values17-----------------
+[boolop_test]
+1T: Inputs-> 9381
+1F: Inputs-> 9382
+2T: Inputs-> -
+2F: Inputs-> 5794.74
+3T: Inputs-> 5794.74
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values18-----------------
+[boolop_test]
+1T: Inputs-> -9286
+1F: Inputs-> -9285
+2T: Inputs-> -
+2F: Inputs-> 7456.93
+3T: Inputs-> 7456.93
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values19-----------------
+[boolop_test]
+1T: Inputs-> 5477
+1F: Inputs-> 5478
+2T: Inputs-> 5479
+2F: Inputs-> 5478
+3T: Inputs-> 5478
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values20-----------------
+[boolop_test]
+1T: Inputs-> -8274
+1F: Inputs-> -8273
+2T: Inputs-> -8273
+2F: Inputs-> -8272
+3T: Inputs-> -8272
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values21-----------------
+[boolop_test]
+1T: Inputs-> -
+1F: Inputs-> 3910.26
+2T: Inputs-> -
+2F: Inputs-> -3236.5
+3T: Inputs-> -3236.5
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 0
+weak: 2
+strong: 9
+total: 9
+------------------------------------
+------------values22-----------------
+[boolop_test]
+1T: Inputs-> -3817
+1F: Inputs-> -3816
+2T: Inputs-> -
+2F: Inputs-> -3305.75
+3T: Inputs-> -3305.75
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values23-----------------
+[boolop_test]
+1T: Inputs-> -
+1F: Inputs-> 9782.36
+2T: Inputs-> 9781
+2F: Inputs-> 9782
+3T: Inputs-> 9782
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 0
+weak: 3
+strong: 9
+total: 9
+------------------------------------
+------------values24-----------------
+[boolop_test]
+1T: Inputs-> -5070
+1F: Inputs-> -5069
+2T: Inputs-> -
+2F: Inputs-> 8918.4
+3T: Inputs-> 8918.4
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values25-----------------
+[boolop_test]
+1T: Inputs-> -
+1F: Inputs-> -7681.44
+2T: Inputs-> -
+2F: Inputs-> -1284.22
+3T: Inputs-> -1284.22
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 0
+weak: 2
+strong: 9
+total: 9
+------------------------------------
+------------values26-----------------
+[boolop_test]
+1T: Inputs-> -
+1F: Inputs-> -274.71
+2T: Inputs-> -
+2F: Inputs-> 8342.2
+3T: Inputs-> 8342.2
+3F: Inputs-> 8343
+
+.......FIM.......
+vivos: 0
+weak: 2
+strong: 9
+total: 9
+------------------------------------
+------------values27-----------------
+[boolop_test]
+1T: Inputs-> -3367
+1F: Inputs-> -3366
+2T: Inputs-> -
+2F: Inputs-> 7142.54
+3T: Inputs-> 7142.54
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values28-----------------
+[boolop_test]
+1T: Inputs-> 690
+1F: Inputs-> 691
+2T: Inputs-> 691
+2F: Inputs-> 692
+3T: Inputs-> 692
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 4
+strong: 8
+total: 9
+------------------------------------
+------------values29-----------------
+[boolop_test]
+1T: Inputs-> -2730
+1F: Inputs-> -2729
+2T: Inputs-> -
+2F: Inputs-> -1308.62
+3T: Inputs-> -1308.62
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------
+------------values30-----------------
+[boolop_test]
+1T: Inputs-> -9460
+1F: Inputs-> -9459
+2T: Inputs-> -
+2F: Inputs-> -8215.53
+3T: Inputs-> -8215.53
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
+------------------------------------

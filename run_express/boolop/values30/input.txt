@@ -1,0 +1,13 @@
+[boolop_test]
+1T: Inputs-> -9460
+1F: Inputs-> -9459
+2T: Inputs-> -
+2F: Inputs-> -8215.53
+3T: Inputs-> -8215.53
+3F: Inputs-> -
+
+.......FIM.......
+vivos: 1
+weak: 2
+strong: 8
+total: 9
