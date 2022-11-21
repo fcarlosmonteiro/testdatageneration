@@ -19,7 +19,7 @@ def insert_sort(item1,item2,item3,item4,item5):
     return list           
 
 
-if not (__name__ == '__main__'): #PM
+if not (__name__ == '__main__'): #PM type_kill=random args=[1, 1, 0, 0, 1]
     item1 = float(sys.argv[1:][0])
     item2 = float(sys.argv[1:][1])
     item3 = float(sys.argv[1:][2])
