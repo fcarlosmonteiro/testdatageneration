@@ -16,4 +16,5 @@ Currently, it works only for the subset of Python functions satisfying these con
 ```bash
 python -m covgen target/boolop.py -m hillclimbing
 ```
-## This app was developed based on https://github.com/greenmonn/sbst-input-generator for structural testing
+
+This app was developed based on https://github.com/greenmonn/sbst-input-generator for structural testing
